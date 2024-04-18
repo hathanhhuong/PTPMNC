@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="image/VNU-HUS-removebg-preview.png">
+    <link rel="apple-touch-icon" href="image/VNU-HUS-removebg-preview.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>STOCK SENTIMENT ANALYSIS</title>
+    <link rel="stylesheet" href="./font-type.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  "HTML-CSS": {
+    availableFonts: [],
+    preferredFonts: "TeX",
+    webFont:"",
+    imageFont:"",
+    undefinedFamily:"'Arial Unicode MS',serif"
+  }
+});
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/javascript"
+            src="./action.js">
+    </script>
+</head>
+
+
+<body  style="background-color: white; font-family:Cambria; font-size: 16px">
+
+<div id="warning-container" class="warning-container">
+    <p class="warning-message"></p>
+</div>
+<div id="success-container" class="success-container">
+    <p class="success-message"></p>
+</div>
+<div class="container-fluid ">
+    <div class="row">
+
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-12 px-md-4">
+            <div class="dashboard-header">
+                <div class="title-header">
+                    <div>
+                        <a href="./index.html">
+                    <img src="image/logo.jpg" alt="logo " width="120">
+                        </a>
+                    <span class="title-logo"> Phát triển phần mềm nâng cao - Python</span>
+                    </div>
+                        <p class="title-right">STOCK SENTIMENT ANALYSIS</p>
+           
+                </div>
+            </div>
+            <div class="search-box">
+                <div class="title-search-box" >
+                    <strong> Tra cứu thông tin chứng khoán</strong>
+                </div>
+               
+            <div class="dashboard-cards">
+
+                <div class=""><input class="input-type" type="text"  id="input_stock_code" name="stock_code" value="" required placeholder="Mã chứng khoán &#42;"></div>
+                <div class="">
+                    <select  id="input_label" name="label" placeholder="Phân loại" class="input-type">
+                        <option value="" disabled selected hidden>Phân loại</option>
+                        <option value="">blank</option>
+                        <option value="negative">negative</option>
+                        <option value="positive">positive</option>
+                        <option value="neutral">neutral</option>
+                    </select>
+                </div>
+                <div class=""><input id="input_from" class="input-type" type="date" value="" min="2023-01-01" max="2030-01-01"></div>
+                <div class=""><input id="input_to" class="input-type"  type="date" value="" min="2023-01-01" max="2030-01-01"></div>
+                <div class=""> <button type="submit" class=" input-type yellow-btn" id="search-summit"> <span class="type-btn">Tìm kiếm  <img style="margin-bottom: 5px;" src="image/ion--md-search.png" alt="logo " width="20"></span></button></div>
+                <div class=""> <button onclick="toggleModal()"  type="submit" class=" input-type green-btn" id="created-bt"><span class="type-btn"> Tạo mới <img style="margin-bottom: 5px;" src="image/material-symbols--add.png" alt="logo " width="20"></span></button></div>
+            </div>
+            </div>
+            <div class="main-table">
+                
+                <table class="table-dashboard table-border">
+                    <tbody class="table-border">
+                    <tr>
+                        <th style="width: 10%" class="background-color-header-table">Mã chứng khoán</th>
+                        <th style="width: 20%" class="background-color-header-table">URL</th>
+                        <th style="width: 10%" class="background-color-header-table">Ngày tạo</th>
+                        <th style="width: 10%" class="background-color-header-table">Phân loại</th>
+                        <th class="background-color-header-table">Nội dung</th>
+                    </tr>
+                    </tbody>
+                </table>
+                
+                <div class="btn-row" >
+                    <div class="title-right">
+                    <button type="submit" class="btn-next" id="search-pre" style="display: none"> <span class="type-btn">  <img style="margin-bottom: 5px;" src="image/carbon--previous-filled.png" alt="logo " width="20"> Trước  </span></button>
+                     <button type="submit" class="btn-next" id="search-next" style="display: none"><span class="type-btn"> Sau <img style="margin-bottom: 5px;" src="image/carbon--next-filled.png" alt="logo " width="20"></span></button>
+                    </div>
+                </div>
+            </div>
+          
+        </main>
+    </div>
+</div>
+
+
+<div class="modal-container" onclick="toggleModal()"></div>
+<div class="modal-window">
+    <div class="title-modal">
+        <p style="    padding: 20px; font-size: 24px;">Nhập thông tin</p>
+    </div>
+
+    <div class="body-modal">
+        <table class="table-modal">
+            <tr>
+                <td>
+                    <label for="article">Link bài báo:</label>
+                </td>
+                <td>
+                    <input type="text" id="article" name="article" class="input-type" required>
+                </td>
+                
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="created_date">Ngày tạo:</label>
+                </td>
+                <td>
+                    <input type="date" id="created_date" name="created_date" class="input-type" required>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <label for="created_content">Nội dung bài báo:</label>
+                </td>
+                <td>
+                    <textarea id="created_content" name="created_content" class="input-type-textarea" rows="5" required></textarea>
+                </td>
+
+            </tr>
+        </table>
+        <table class="table-modal">
+            <tr>
+                <td>
+                    <button class="btn-modal green-btn-color" type="submit" id="created_submit">Tạo mới</button>
+                </td>
+                <td>
+                    <button class="btn-modal red-btn-color" type="reset" onclick="toggleModal()">Hủy bỏ</button>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn-modal green-btn-color" id="downloadButton">Template <img style="margin-bottom: 3px;" src="image/icon-park-outline--download-two.png" alt="logo " width="20"></button>
+                </td>
+                <td>
+                    <button  class="btn-modal white-btn-color" id="uploadButton">Import file</button>
+                </td>
+
+            </tr>
+            
+        </table>
+     
+        <input type="file" id="fileInput" style="display: none;">
+    </div>
+    
+
+</div>
+<script>
+    const toggleModal = () => document.body.classList.toggle("open-modal");
+</script>
+<script type="text/javascript" src="xlsx.full.min.js"></script>
+<script type="text/javascript" src="jszip.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

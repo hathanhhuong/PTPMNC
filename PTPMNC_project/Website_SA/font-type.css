@@ -1,0 +1,356 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+.sidebar {
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+.dashboard-header {
+    margin-bottom: 20px;
+}
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 20px;
+}
+.search-box{
+    background-color: #0984c5;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.title-search-box{
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #fff;
+}
+
+.input-type{
+    padding-left: 10px;
+    border-radius:12px;
+    width: 90%;
+    height: 35px;
+    margin-bottom: 20px;
+}
+
+.input-type-textarea{
+    border-radius:12px;
+    width: 90%;
+    margin-bottom: 20px;
+}
+
+.table-border {
+    border-radius: 10px; /* Áp dụng border-radius cho toàn bộ bảng */
+    border-collapse: unset;
+    border-spacing: 2px;
+}
+table {
+    padding: 5px;
+}
+.table-dashboard {
+    border-radius: 10px;
+    width: 94%;
+    display: inline-table; /* Make the table an inline-block element */
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+.btn-row {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 94%;
+    display: block; /* Make the table an inline-block element */
+}
+.main-table {
+    margin-top: 20px;
+    background-color: #337ab78f;
+    border-radius: 12px;
+    padding-top: 50px;
+    text-align: center;
+    min-height: 70vh;
+}
+
+.table-dashboard th, .table-dashboard td {
+    padding: 8px;
+    text-align: left;
+}
+.background-color-header-table {
+    background-color: #d7d8da;
+}
+
+.background-color-row-gray {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.title-logo {
+    font-size: 20px;
+    color: blue;
+    padding-left: 20px;
+    font-weight: bold;
+}
+.title-right {
+    text-align: right;
+    text-align: right;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.title-header {
+    display: ruby-text;
+}
+
+.yellow-btn {
+    background-color:yellow;
+    color:black;
+    border: #ffd500;
+    border-radius:12px;
+    padding:1% 2%;
+    font-size:1em;
+    transition: .2s ease-in-out all;
+    box-shadow: 0 0px 15px rgba(0, 0, 200, 0.2);
+}
+.yellow-btn:hover{
+    background-color:yellow;
+    color: black;
+    /*border:2px rgb(0,0,200) solid;*/
+    box-shadow: 0 4px 15px rgba(0, 0, 200, 0.3);
+    transform:translateY(-2%);
+    transition: .2s ease-in-out all;
+}
+
+.green-btn {
+    background-color:#04AA6D;
+    color:black;
+    border:2px #04AA6D solid;
+    border-radius:12px;
+    padding:1% 2%;
+    font-size:1em;
+    transition: .2s ease-in-out all;
+    box-shadow: 0 0px 15px rgba(0, 0, 200, 0.2);
+}
+.green-btn:hover{
+    background-color:#04AA6D;
+    color: black;
+    /*border:2px rgb(0,0,200) solid;*/
+    box-shadow: 0 4px 15px #04AA6D;
+    transform:translateY(-2%);
+    transition: .2s ease-in-out all;
+}
+
+.type-btn {
+    font-size: 20px;
+    font-weight: bold;
+}
+.btn-next {
+    color: #f8f9fa;
+    background-color: #0984c5;
+    border:0px;
+    width: 100px;
+    margin-bottom: 20px;
+    /*height: 30px;*/
+}
+.btn-next:hover{
+    color: #f8f9fa;
+    background-color: #0984c5;
+    /*border:2px rgb(0,0,200) solid;*/
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.83);
+    transform:translateY(-2%);
+    transition: .2s ease-in-out all;
+}
+.btn-get-start {
+    height: 50px;
+    width: 150px;
+    border: 0px;
+    border-radius: 5px;
+    margin-top: 30px;
+    color: #0984c5;
+    background-color: white;
+}
+.btn-get-start:hover{
+    color: white;
+    background-color: rgba(12, 187, 199, 0.78);
+    /*border:2px rgb(0,0,200) solid;*/
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.83);
+    transform:translateY(-2%);
+    transition: .2s ease-in-out all;
+}
+
+.warning-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    padding: 15px 10px 10px;
+    background-color: #FEEFB3;
+    border: 1px solid #fef4b3;
+    border-radius: 5px;
+    display: none; /* Initially hidden */
+}
+
+
+.warning-message {
+    font-weight: bold;
+    color: #9F6000;
+
+}
+
+.success-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    padding: 15px 10px 10px;
+    background-color: #d5f6a0;
+    border: 1px solid #9ef503;
+    border-radius: 5px;
+    display: none; /* Initially hidden */
+}
+.success-message {
+    font-weight: bold;
+    color: green;
+}
+
+    .blank-color {
+    color: blue;
+}
+
+.negative-color {
+    color: red;
+}
+
+.positive-color {
+    color: green;
+}
+
+.neutral-color {
+    color: #c8b700;
+}
+
+
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+body.open-modal .modal-container {
+    visibility: visible;
+    opacity: 1;
+}
+
+.title-modal {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    height: 80px;
+    font-weight: bold;
+    color: #f8f9fa;
+    background-color: #0984c5;
+}
+
+.body-modal {
+    text-align: center;
+}
+.table-modal{
+    display: inline-table; /* Make the table an inline-block element */
+    width: 80%;
+    margin-bottom: 20px;
+}
+.table-modal td {
+    padding: 8px;
+    text-align: left;
+}
+.btn-modal{
+    width: 90%;
+    font-weight: bold;
+    font-size: 18px;
+    height: 30px;
+    border-radius: 5px;
+    border: 0px;
+}
+
+.green-btn-color {
+    background-color: green;
+    color: white;
+}
+
+.red-btn-color {
+    background-color: red;
+    color: white;
+}
+
+.white-btn-color {
+    background-color: white;
+    color: green;
+    border: 2px green solid;
+}
+
+
+.main-container,
+.modal-window,
+.modal-container {
+    transition: 0.5s;
+}
+
+.modal-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background: #ffffff;
+    color: #000000;
+    padding: 0px 0px;
+    width: 600px;
+    border-radius: 12px;
+    translate: -50% -50%;
+    scale: 1;
+    opacity: 0;
+    visibility: hidden;
+}
+
+body.open-modal > .main-container {
+    scale: 0.75;
+}
+
+body.open-modal .modal-window {
+    opacity: 1;
+    visibility: visible;
+    animation: modal-window-in 0.5s;
+}
+
+
+@keyframes modal-window-in {
+    0% {
+        translate: -50% 10%;
+        scale: 0.5;
+    }
+    100% {
+        opacity: 1;
+        scale: 1;
+        visibility: visible;
+    }
+}
+
+#page-background {
+        height: 90vh;
+    /* radial scrim and background image */
+    background: url(./image/background.jpg) no-repeat center center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding-left: 1em;
+    padding-right: 1em;
+    color: white;
+    font-weight: bold;;
+}
