@@ -2,12 +2,15 @@
 Nguồn từ các website khác (cafeF, 24h,...): Qua quá trình crawl data. Đây là phần dữ liệu để trainning và dữ liệu được lưu trữ lại để end-user có thể tìm kiếm. File .py:
 Website của team: Qua chức năng tạo mới dữ liệu. Sử dụng API insert: file .py: 
 2. Xử lý data
+
 2.1. Sử dụng Azure Databricks để làm sạch dữ liệu.
 File .py: 
+
 2.2. Tóm tắt nội dung bài báo theo từng mã chứng khoán.
 Viết trên Azure Databricks.
 Sử dụng OpenAI và các thành viên của team tóm tắt bài báo theo từng mã cổ phiếu và gán nhãn dữ liệu làm training set. 
 Sử dung OpenAI để tóm tắt bài báo theo từng mã cổ phiếu: file .py: 
+
 2.3. Gán nhãn dữ liệu: positive/negative/neutral:
 Viết trên Azure Databricks.
 Sử dụng OpenAI và các thành viên của team tóm tắt bài báo theo từng mã cổ phiếu và gán nhãn dữ liệu làm training set. 
