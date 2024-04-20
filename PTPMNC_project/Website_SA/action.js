@@ -309,13 +309,14 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // tao ban ghi bang form 
     function  createdByForm() {
-        let item = {
+        let item = [{
             'article': document.getElementById('article').value,
             'created_date': document.getElementById('created_date').value,
             'content': document.getElementById('created_content').value,
-        };
+        }];
         (async () => {
             try {
+                
                 const insertRow = await insertArticle(item);
                 
             } catch (error) {
@@ -324,15 +325,13 @@ document.addEventListener("DOMContentLoaded", function() {
         })();
     }
 
-
-    //function get data by api search
-    async function insertArticle(data) {
+    function validateInsertData(data) {
         if( !data.article  ) {
             showWarning('Thiếu trường link bài báo!');
             return;
         }
         data.id = data.article;
-        
+
         if (!data.created_date) {
             showWarning('Thiếu trường ngày tạo!');
             return;
@@ -342,7 +341,22 @@ document.addEventListener("DOMContentLoaded", function() {
             showWarning('Thiếu trường nội dung bài báo!');
             return;
         }
-        
+        return data; 
+    }
+
+    //function get data by api search
+    async function insertArticle(data) {
+        let insertData = [];
+        data.forEach(function(rowData, index) {
+           let tmpData = validateInsertData(rowData);
+           if(tmpData){
+               insertData.push(tmpData);
+           }
+           
+        });
+        if(!insertData.length){
+            return ;
+        }
 
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
@@ -360,7 +374,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (xhr.status === 200 || xhr.status === 201) { // Handle both created (201) and successful update (200) responses
                     const response = JSON.parse(xhr.responseText);
                     showSuccess('Thành công!');
-                    callModelAPI();
+                    // callModelAPI();
                     resolve(response);
                 } else {
                     showWarning(insertRow.message);
@@ -373,21 +387,21 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // call api Model
-    function callModelAPI() {
-        return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-
-            // Set up the request
-            xhr.open('GET', 'https://sentiment-analytics.azurewebsites.net/api/model');
-
-            // Define callback function for when the request is complete
-            xhr.onload = function() {};
-
-            // Send the request
-            xhr.send();
-        });
-    }
+    // // call api Model
+    // function callModelAPI() {
+    //     return new Promise((resolve, reject) => {
+    //         const xhr = new XMLHttpRequest();
+    //
+    //         // Set up the request
+    //         xhr.open('GET', 'https://sentiment-analytics.azurewebsites.net/api/model');
+    //
+    //         // Define callback function for when the request is complete
+    //         xhr.onload = function() {};
+    //
+    //         // Send the request
+    //         xhr.send();
+    //     });
+    // }
 
     // upload file xlsx
     function UploadFile() {
@@ -427,7 +441,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         var firstSheet = workbook.SheetNames[0];
         var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
-        
+        let insertData = []
         excelRows.forEach(function(rowData, index) {
             console.log(rowData)
             let item = {
@@ -435,14 +449,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 'created_date': rowData.Created_date,
                 'content': rowData.Content,
             };
-            (async () => {
-                try {
-                    const insertRow = await insertArticle(item);
-                } catch (error) {
-                    console.error('An error occurred:', error);
-                }
-            })();
+            insertData.push(item);
+     
         });
+        
+        (async () => {
+            try {
+                const insertRow = await insertArticle(insertData);
+            } catch (error) {
+                console.error('An error occurred:', error);
+            }
+        })();
         return ;
         
     };
