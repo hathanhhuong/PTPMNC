@@ -49,6 +49,7 @@ class Articles:
             viet = cdata
         viet = viet.replace('<![CDATA[','').replace(']]>','')
         return viet
+    
     @classmethod
     def linify_text(cls, text):
         to_be_replaceds = ['\n', 
@@ -71,6 +72,7 @@ class Articles:
     @classmethod
     def from_dict(cls, article_dict):
         return cls(**article_dict)
+    
     @classmethod
     def from_line(cls, line):
         # Extract attribute-value pairs
@@ -343,4 +345,38 @@ class ArticleManagers:
                 submap.last_processed = ArticleManagers.get_iso_from_current_time()
                 self.save_articles(self.processed_submaps, processed_submaps_file_path, 'w')
                 print(f'Finished processing {submap.url}.')
-            
+    
+    @classmethod           
+    def contains_text(cls, text, word_list):
+        for word in word_list:
+            if word in text:
+                return True
+        return False
+
+    def filter_articles(self, processed_submaps_file_path, output_folder_path, filtered_output_folder_path):
+        processed_submaps = self.get_articles(processed_submaps_file_path)
+        submaps_path_to_process = []
+        for submap in processed_submaps:
+            extracted_name, _, processed_name = self.get_file_name_from_submap(submap)
+            processed_articles_file_path =  output_folder_path + processed_name
+            filtered_articles_file_path = filtered_output_folder_path + extracted_name + '_filtered.txt'
+            submaps_path_to_process.append([processed_articles_file_path, filtered_articles_file_path])
+
+        wanted_categories = ['Doanh nghiệp',
+                            'Thị trường chứng khoán']
+
+        other_considerations = ['Bất động sản',
+                                'Tài chính - ngân hàng']
+
+        excluding = ['Doanh nghiệp giới thiệu']
+
+        for submap_to_process in submaps_path_to_process:
+            filtered_articles = []
+            procesed_articles_path = submap_to_process[0]
+            save_path = submap_to_process[1]
+            articles = self.get_articles(procesed_articles_path)
+
+            for article in articles:
+                if ArticleManagers.contains_text(article.categories, wanted_categories) and not ArticleManagers.contains_text(article.categories, excluding):
+                    filtered_articles.append(article)
+            self.save_articles(filtered_articles, save_path)
