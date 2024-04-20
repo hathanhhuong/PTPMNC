@@ -11,6 +11,7 @@
 - sentiment-analytics: chứa code API get-stock-information (search các MCK) và API insert-article-in-db (thêm các bài viết mới vào database để model xử lý và phân tích - Sử dụng Azure CosmosDB để lưu trữ dữ liệu (hệ thống cloud))
 7. Website_SA
 - Front-end:
+   - /Website_SA/index.html và /Website_SA/dashboard.html: để xem giao diện
    - Bao gồm 2 chức năng search data và insert data.
    - Sử dụng ngôn ngữ HTML/CSS: để viết front-end.
    - File: /Website_SA/index.html và /Website_SA/dashboard.html và /Website_SA/font-type.css
