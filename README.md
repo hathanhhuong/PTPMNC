@@ -1,5 +1,6 @@
-1. Document.pdf
+1. Document.pdf & slide: Phân tích cảm xúc
 - Mô tả nội dung, chức năng của bài đề tài: Phân tích cảm xúc của mã chứng khoán theo bài báo
+- Slide: Phân tích cảm xúc.pptx
 3. Code-crawl-and-clean-data
 - Lấy dữ liệu từ nguồn cafeF và lọc dữ liệu (tin tức chứng khoán và doanh nghiệp)
 5. Code-model
